@@ -1,0 +1,12 @@
+---
+namespace: {{ namespace }}
+name: {{ collection_name }}
+version: "{{ (version|quote) is version("0.0.0", operator="gt", version_type="semver")|ternary(version, undef("version must be a valid semantic version greater than 0.0.0")) }}"
+readme: README.md
+authors:
+  - lingling <lingling+dev@posteo.de>
+description: Template for an Ansible collection.
+license_file: "LICENSE"
+# repository:
+tags: []
+dependencies: {}

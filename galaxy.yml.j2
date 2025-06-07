@@ -13,9 +13,12 @@ documentation: https://codeberg.org/{{ namespace }}/ansible-collection-{{ namesp
 tags: []
 dependencies: {}
 build_ignore:
+  - "**/*.ansible"
+  - "**/.gitignore"
   - "*.tar.gz"
   - ".aar_doc"
   - ".aar_doc.yml"
+  - ".ansible"
   - ".git"
   - ".gitignore"
   - ".gitmodules"

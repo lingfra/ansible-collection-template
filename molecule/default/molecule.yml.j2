@@ -1,0 +1,25 @@
+---
+driver:
+  name: podman
+platforms:
+  - name: {{ namespace }}-{{ collection_name }}-archlinux
+    dockerfile: Containerfile.archlinux
+    image: docker.io/library/archlinux:latest
+    pre_build_image: false
+  - name: {{ namespace }}-{{ collection_name }}-debian13
+    image: docker.io/library/debian:13
+    pre_build_image: false
+  - name: {{ namespace }}-{{ collection_name }}-fedora42
+    image: docker.io/library/fedora:42
+    pre_build_image: false
+  - name: {{ namespace }}-{{ collection_name }}-ubuntu2404
+    image: docker.io/library/ubuntu:24.04
+    pre_build_image: false
+provisioner:
+  name: ansible
+  config_options:
+    defaults:
+      callbacks_enabled: ansible.posix.profile_tasks
+      stdout_callback: ansible.posix.debug
+  playbooks:
+    converge: converge.yml

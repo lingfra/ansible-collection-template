@@ -1,0 +1,12 @@
+---
+# Playbook {{ namespace }}.{{ collection_name }}.{{ role | default(collection_name) }}
+
+- name: "Configure {{ role | default(collection_name) }}"
+  hosts: "all"
+  gather_facts: true
+  tags:
+    - {{ role | default(collection_name) }}
+  tasks:
+    - name: "Import role {{ namespace }}.{{ collection_name }}.{{ role | default(collection_name) }}"
+      ansible.builtin.import_role:
+        name: {{ namespace }}.{{ collection_name }}.{{ role | default(collection_name) }}

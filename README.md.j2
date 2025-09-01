@@ -6,11 +6,12 @@ An Ansible collection to configure {{ collection_name }}.
 
 ### Roles
 
-- [foo](./roles/foo/README.md): Configures foo.
+- [{{ role | default(collection_name) }}](./roles/{{ role | default(collection_name) }}/README.md)
 
 ### Playbooks
 
-- [bar](./playbooks/bar.yaml): Configures bar.
+- [{{ role | default(collection_name) }}](./playbooks/{{ role |
+default(collection_name) }}.yaml)
 
 ## Installation
 

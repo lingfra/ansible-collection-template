@@ -6,13 +6,20 @@ mv roles/run roles/{{ role | default(collection_name) }}
 git init
 git remote add origin git@github.com:lingfra/ansible-collection-{{ namespace }}-{{ collection_name }}.git
 git submodule add https://github.com/lingfra/aar-doc-config.git .aar_doc
-git add LICENSE README.md CHANGELOG.md galaxy.yml CODE_OF_CONDUCT.md meta/ plugins/ .aar_doc.yml
+git add LICENSE README.md CHANGELOG.md galaxy.yml CODE_OF_CONDUCT.md meta/ plugins/ .aar_doc.yml .pre-commit-config.yaml
 
 printf "\n%s\n\n" "---------- git status ----------"
 git status
 
 printf "%s\n\n" "---------- git commit ----------"
 git commit -m "Initial commit for {{ namespace }}.{{ collection_name }}"
+
+printf "\n%s\n\n" "---------- pre-commit ----------"
+if command -v pre-commit >/dev/null; then
+    pre-commit install
+else
+    printf "pre-commit not found, install it and enable the hooks with 'pre-commit install'\n"
+fi
 
 printf "\n%s\n\n" "----------"
 printf "Create a repository at https://github.com/lingfra with the name 'ansible-collection-{{ namespace }}-{{ collection_name }}'\n\n"
